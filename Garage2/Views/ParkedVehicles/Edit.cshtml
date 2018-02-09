@@ -1,4 +1,5 @@
-﻿@model Garage2.Models.ParkedVehicle
+﻿@using Garage2.Models
+@model Garage2.Models.ParkedVehicle
 
 @{
     ViewBag.Title = "Edit";
@@ -28,7 +29,8 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Brand, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Brand, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.DropDownListFor(model => model.Brand, new SelectList(Enum.GetValues(typeof(Brands))), new { htmlAttributes = new { @class = "form-control" } })
+                @*@Html.EditorFor(model => model.Brand, new { htmlAttributes = new { @class = "form-control" } })*@
                 @Html.ValidationMessageFor(model => model.Brand, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -36,7 +38,8 @@
         <div class="form-group">
             @Html.LabelFor(model => model.VehicleType, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.VehicleType, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.DropDownListFor(model => model.VehicleType, new SelectList(Enum.GetValues(typeof(VehicleTypes))), new { htmlAttributes = new { @class = "form-control" } })
+                @*@Html.EditorFor(model => model.VehicleType, new { htmlAttributes = new { @class = "form-control" } })*@
                 @Html.ValidationMessageFor(model => model.VehicleType, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -52,7 +55,8 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Color, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Color, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.DropDownListFor(model => model.Color, new SelectList(Enum.GetValues(typeof(Colors))), new { htmlAttributes = new { @class = "form-control" } })
+                @*@Html.EditorFor(model => model.Color, new { htmlAttributes = new { @class = "form-control" } })*@
                 @Html.ValidationMessageFor(model => model.Color, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -60,7 +64,8 @@
         <div class="form-group">
             @Html.LabelFor(model => model.FuelType, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.FuelType, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.DropDownListFor(model => model.FuelType, new SelectList(Enum.GetValues(typeof(FuelTypes))), new { htmlAttributes = new { @class = "form-control" } })
+                @*@Html.EditorFor(model => model.FuelType, new { htmlAttributes = new { @class = "form-control" } })*@
                 @Html.ValidationMessageFor(model => model.FuelType, "", new { @class = "text-danger" })
             </div>
         </div>

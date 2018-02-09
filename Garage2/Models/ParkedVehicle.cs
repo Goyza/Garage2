@@ -1,17 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using Garage2.DataAccessLayer;
 using System.Linq;
 using System.Web;
 
 namespace Garage2.Models
 {
-    public class ParkedVehicle
-    {
+        public class ParkedVehicle
+        {
+
         //ParkedVehicle class contains list of available vehicle 
         public int Id { get; set; }
         //Nessesary to create validation for number
-        [CustomRegistrationNumberValidator(ErrorMessage = "Registration Number should have XXX letters and 000 number")]
+        [CustomRegistrationNumberValidator(ErrorMessage = "Registration Number should be Uniq and have format XXXXXX")]
         [Required(ErrorMessage = "Please type Registratin Number")]
         public string RegistrationNumber { get; set; }
         // Brand of vehicle see enum Brands(optional)
@@ -33,7 +35,7 @@ namespace Garage2.Models
         [DisplayFormat(DataFormatString = "{0:yyyy/MM/dd HH:mm}", ApplyFormatInEditMode = true)]
         public DateTime CheckInTime { get; set; }
 
-    }
+        }
 
         public enum Brands
         {
@@ -41,7 +43,7 @@ namespace Garage2.Models
         }
         public enum VehicleTypes
         {
-            Undefined, Sedan, Hatchback, Coupe
+            Undefined, Car, Bus, Boat
         }
         public enum Colors
         {
@@ -55,6 +57,7 @@ namespace Garage2.Models
 
         public class CustomRegistrationNumberValidator : ValidationAttribute
         {
+        private GarageContext db = new GarageContext();
             public CustomRegistrationNumberValidator() : base("{0} Is to wrong")
             {
 
@@ -65,37 +68,18 @@ namespace Garage2.Models
                 if (value != null)
                 {
                     var valueAsString = value.ToString().Trim();
-                    if (valueAsString.Length>6)
+                var alreadyExist = db.ParkedVehicles.Where(r => r.RegistrationNumber.Equals(valueAsString));
+                    if (valueAsString.Length > 6 || alreadyExist.Count()>0 )
                     {
-                        var errorMessage = FormatErrorMessage(Context.DisplayName);
-                        return new ValidationResult(errorMessage);
+                    var errorMessage = FormatErrorMessage(Context.DisplayName);
+                    return new ValidationResult(errorMessage);
+
                     }
 
                 }
                 return ValidationResult.Success;
             }
         }
-        public class RestrictedDate : ValidationAttribute
-        {
-            public RestrictedDate() : base("{0} Is to early")
-            {
-
-            }
-
-            protected override ValidationResult IsValid(object value, ValidationContext Context)
-            {
-                if (value != null)
-                {
-                    DateTime _date = (DateTime)value;
-                    if (_date < DateTime.Now)
-                    {
-                        var errorMessage = FormatErrorMessage(Context.DisplayName);
-                        return new ValidationResult(errorMessage);
-                    }
-
-                }
-                return ValidationResult.Success;
-            }
         
-    }
+    
 }

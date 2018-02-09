@@ -14,9 +14,17 @@ namespace Garage2.Controllers
     public class ParkedVehiclesController : Controller
     {
         private GarageContext db = new GarageContext();
+        //Search By Registration Number
+        public ActionResult SearchByRegNumber(string searchByRegNum = null) {
 
-        // GET: ParkedVehicles
-        public ActionResult Index()
+        var model = db.ParkedVehicles.Where(r => searchByRegNum == null ||
+         r.RegistrationNumber.Contains(searchByRegNum));
+            return View(model);
+    }
+
+
+    // GET: ParkedVehicles
+    public ActionResult Index()
         {
             return View(db.ParkedVehicles.ToList());
         }
