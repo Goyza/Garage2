@@ -14,23 +14,26 @@
         <th>
             @Html.DisplayNameFor(model => model.RegistrationNumber)
         </th>
-        <th>
+        @*<th>
             @Html.DisplayNameFor(model => model.Brand)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.VehicleType)
-        </th>
+        </th>*@
         <th>
             @Html.DisplayNameFor(model => model.Model)
         </th>
-        <th>
+        @*<th>
             @Html.DisplayNameFor(model => model.Color)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.FuelType)
-        </th>
+        </th>*@
         <th>
             @Html.DisplayNameFor(model => model.CheckInTime)
+        </th>
+        <th>
+            Parking time
         </th>
         <th></th>
     </tr>
@@ -40,28 +43,32 @@
         <td>
             @Html.DisplayFor(modelItem => item.RegistrationNumber)
         </td>
-        <td>
+        @*<td>
             @Html.DisplayFor(modelItem => item.Brand)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.VehicleType)
-        </td>
+        </td>*@
         <td>
             @Html.DisplayFor(modelItem => item.Model)
         </td>
-        <td>
+        @*<td>
             @Html.DisplayFor(modelItem => item.Color)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.FuelType)
-        </td>
+        </td>*@
         <td>
             @Html.DisplayFor(modelItem => item.CheckInTime)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+            @*It nessessary to create valid format!!*@
+          Days:@(DateTime.Now.Subtract(item.CheckInTime).Days) Hours:@(DateTime.Now.Subtract(item.CheckInTime).Hours) Min:@(DateTime.Now.Subtract(item.CheckInTime).Minutes)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.Id })
         </td>
     </tr>
 }

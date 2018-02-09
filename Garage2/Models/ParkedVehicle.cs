@@ -10,9 +10,10 @@ namespace Garage2.Models
     {
         //ParkedVehicle class contains list of available vehicle 
         public int Id { get; set; }
-        [StringLength(30, ErrorMessage = "Should be less than 30")]
+        //Nessesary to create validation for number
+        [CustomRegistrationNumberValidator(ErrorMessage = "Registration Number should have XXX letters and 000 number")]
         [Required(ErrorMessage = "Please type Registratin Number")]
-        public string  RegistrationNumber{ get; set; }
+        public string RegistrationNumber { get; set; }
         // Brand of vehicle see enum Brands(optional)
         [StringLength(30, ErrorMessage = "Should be less than 30")]
         public string Brand { get; set; }
@@ -24,11 +25,15 @@ namespace Garage2.Models
         public string Model { get; set; }
         // Vehicle color, see enum Color(optional)
         [StringLength(30, ErrorMessage = "Should be less than 30")]
-        public string Color  { get; set; }
+        public string Color { get; set; }
         //Fuel see enum Fueltypes(optional)
         [StringLength(30, ErrorMessage = "Should be less than 30")]
         public string FuelType { get; set; }
+
+        [DisplayFormat(DataFormatString = "{0:yyyy/MM/dd HH:mm}", ApplyFormatInEditMode = true)]
         public DateTime CheckInTime { get; set; }
+
+    }
 
         public enum Brands
         {
@@ -46,5 +51,51 @@ namespace Garage2.Models
         {
             Undefined, Diesel, Gasoline, Electric
         }
+
+
+        public class CustomRegistrationNumberValidator : ValidationAttribute
+        {
+            public CustomRegistrationNumberValidator() : base("{0} Is to wrong")
+            {
+
+            }
+
+            protected override ValidationResult IsValid(object value, ValidationContext Context)
+            {
+                if (value != null)
+                {
+                    var valueAsString = value.ToString().Trim();
+                    if (valueAsString.Length>6)
+                    {
+                        var errorMessage = FormatErrorMessage(Context.DisplayName);
+                        return new ValidationResult(errorMessage);
+                    }
+
+                }
+                return ValidationResult.Success;
+            }
+        }
+        public class RestrictedDate : ValidationAttribute
+        {
+            public RestrictedDate() : base("{0} Is to early")
+            {
+
+            }
+
+            protected override ValidationResult IsValid(object value, ValidationContext Context)
+            {
+                if (value != null)
+                {
+                    DateTime _date = (DateTime)value;
+                    if (_date < DateTime.Now)
+                    {
+                        var errorMessage = FormatErrorMessage(Context.DisplayName);
+                        return new ValidationResult(errorMessage);
+                    }
+
+                }
+                return ValidationResult.Success;
+            }
+        
     }
 }

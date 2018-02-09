@@ -12,7 +12,7 @@ namespace Garage2.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        RegistrationNumber = c.String(nullable: false, maxLength: 30),
+                        RegistrationNumber = c.String(nullable: false),
                         Brand = c.String(maxLength: 30),
                         Type = c.String(maxLength: 30),
                         Model = c.String(maxLength: 30),
