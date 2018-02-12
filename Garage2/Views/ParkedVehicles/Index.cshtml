@@ -39,7 +39,8 @@
         </td>
         <td>
             @*It nessessary to create valid format!!*@
-          Days:@(item.ParkingTime.Days) Hours:@(item.ParkingTime.Hours) Min:@(item.ParkingTime.Minutes)
+            @*Days:@(item.ParkingTime.Days) Hours:@(item.ParkingTime.Hours) Min:@(item.ParkingTime.Minutes)*@
+            @Html.DisplayFor(modelItem => item.ParkingTime)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
