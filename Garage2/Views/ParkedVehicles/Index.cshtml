@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Garage2.Models.ParkedVehicle>
+﻿@model IEnumerable<Garage2.Models.ParkedVehicleViewModel>
 
 @{
     ViewBag.Title = "Garage";
@@ -14,26 +14,14 @@
         <th>
             @Html.DisplayNameFor(model => model.RegistrationNumber)
         </th>
-        @*<th>
-            @Html.DisplayNameFor(model => model.Brand)
-        </th>
         <th>
             @Html.DisplayNameFor(model => model.VehicleType)
-        </th>*@
-        <th>
-            @Html.DisplayNameFor(model => model.Model)
         </th>
-        @*<th>
-            @Html.DisplayNameFor(model => model.Color)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FuelType)
-        </th>*@
         <th>
             @Html.DisplayNameFor(model => model.CheckInTime)
         </th>
         <th>
-            Parking time
+            @Html.DisplayNameFor(model => model.ParkingTime)
         </th>
         <th></th>
     </tr>
@@ -43,27 +31,15 @@
         <td>
             @Html.DisplayFor(modelItem => item.RegistrationNumber)
         </td>
-        @*<td>
-            @Html.DisplayFor(modelItem => item.Brand)
-        </td>
         <td>
             @Html.DisplayFor(modelItem => item.VehicleType)
-        </td>*@
-        <td>
-            @Html.DisplayFor(modelItem => item.Model)
         </td>
-        @*<td>
-            @Html.DisplayFor(modelItem => item.Color)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FuelType)
-        </td>*@
         <td>
             @Html.DisplayFor(modelItem => item.CheckInTime)
         </td>
         <td>
             @*It nessessary to create valid format!!*@
-          Days:@(DateTime.Now.Subtract(item.CheckInTime).Days) Hours:@(DateTime.Now.Subtract(item.CheckInTime).Hours) Min:@(DateTime.Now.Subtract(item.CheckInTime).Minutes)
+          Days:@(item.ParkingTime.Days) Hours:@(item.ParkingTime.Hours) Min:@(item.ParkingTime.Minutes)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |

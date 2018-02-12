@@ -20,7 +20,7 @@ namespace Garage2.Migrations
             //  to avoid creating duplicate seed data.
             context.ParkedVehicles.AddOrUpdate(n => n.RegistrationNumber,
                 new Models.ParkedVehicle { Brand = "Volvo", Color = "Red", RegistrationNumber = "AAA666", VehicleType = "Sedan", FuelType = "Diesel", Model = "C4", CheckInTime = DateTime.Now },
-                new Models.ParkedVehicle { Brand = "Ford", Color = "Blue", RegistrationNumber = "BBB7777", VehicleType = "Sedan", FuelType = "Diesel", Model = "A1", CheckInTime = DateTime.Now }
+                new Models.ParkedVehicle { Brand = "Ford", Color = "Blue", RegistrationNumber = "BBB777", VehicleType = "Sedan", FuelType = "Diesel", Model = "A1", CheckInTime = DateTime.Now }
     );
         }
     }

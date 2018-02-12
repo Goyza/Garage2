@@ -154,16 +154,13 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201802091013371_First.cs" />
-    <Compile Include="Migrations\201802091013371_First.Designer.cs">
-      <DependentUpon>201802091013371_First.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201802091040471_Second.cs" />
-    <Compile Include="Migrations\201802091040471_Second.Designer.cs">
-      <DependentUpon>201802091040471_Second.cs</DependentUpon>
+    <Compile Include="Migrations\201802091546583_Clear.cs" />
+    <Compile Include="Migrations\201802091546583_Clear.Designer.cs">
+      <DependentUpon>201802091546583_Clear.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ParkedVehicle.cs" />
+    <Compile Include="Models\ParkedVehicleViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -228,11 +225,8 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201802091013371_First.resx">
-      <DependentUpon>201802091013371_First.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201802091040471_Second.resx">
-      <DependentUpon>201802091040471_Second.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201802091546583_Clear.resx">
+      <DependentUpon>201802091546583_Clear.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

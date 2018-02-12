@@ -26,7 +26,10 @@ namespace Garage2.Controllers
     // GET: ParkedVehicles
     public ActionResult Index()
         {
-            return View(db.ParkedVehicles.ToList());
+            var model = db.ParkedVehicles.Select(g => new ParkedVehicleViewModel { Id  = g.Id, RegistrationNumber=g.RegistrationNumber, VehicleType= g.VehicleType, CheckInTime=g.CheckInTime }
+                );
+            return View(model);
+
         }
 
         // GET: ParkedVehicles/Details/5

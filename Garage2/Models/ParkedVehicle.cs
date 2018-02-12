@@ -69,7 +69,8 @@ namespace Garage2.Models
                 {
                     var valueAsString = value.ToString().Trim();
                 var alreadyExist = db.ParkedVehicles.Where(r => r.RegistrationNumber.Equals(valueAsString));
-                    if (valueAsString.Length > 6 || alreadyExist.Count()>0 )
+
+                    if (valueAsString.Length > 6 || alreadyExist.Count()>1 )
                     {
                     var errorMessage = FormatErrorMessage(Context.DisplayName);
                     return new ValidationResult(errorMessage);
