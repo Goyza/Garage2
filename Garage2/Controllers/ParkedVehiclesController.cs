@@ -32,6 +32,21 @@ namespace Garage2.Controllers
 
         }
 
+        // GET: Kvitto
+        public ActionResult Kvitto(ParkedVehicle parkedVehicle)
+        {
+            var kvittoModel = new KvittoViewModel
+            {
+                RegistrationNumber = parkedVehicle.RegistrationNumber,
+                CheckInTime = parkedVehicle.CheckInTime,
+                CheckOutTime = DateTime.Now,
+                ParkingTime = DateTime.Now - parkedVehicle.CheckInTime,
+            };
+            return View(kvittoModel);
+
+        }
+
+
         // GET: ParkedVehicles/Details/5
         public ActionResult Details(int? id)
         {
@@ -125,7 +140,7 @@ namespace Garage2.Controllers
             ParkedVehicle parkedVehicle = db.ParkedVehicles.Find(id);
             db.ParkedVehicles.Remove(parkedVehicle);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Kvitto", parkedVehicle);
         }
 
         protected override void Dispose(bool disposing)
