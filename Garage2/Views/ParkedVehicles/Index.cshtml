@@ -20,6 +20,9 @@
         <th>
             @Html.DisplayNameFor(model => model.ParkingTime)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ParkingPlace)
+        </th>
         <th></th>
     </tr>
 
@@ -38,6 +41,9 @@
             @*It nessessary to create valid format!!*@
             @*Days:@(item.ParkingTime.Days) Hours:@(item.ParkingTime.Hours) Min:@(item.ParkingTime.Minutes)*@
             @Html.DisplayFor(modelItem => item.ParkingTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ParkingPlace)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
