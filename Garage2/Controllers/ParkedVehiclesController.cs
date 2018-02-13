@@ -13,13 +13,100 @@ namespace Garage2.Controllers
 {
     public class ParkedVehiclesController : Controller
     {
+
+        
+        
         private GarageContext db = new GarageContext();
         //Search By Registration Number
-        public ActionResult SearchByRegNumber(string searchByRegNum = null) {
 
-        var model = db.ParkedVehicles.Where(r => searchByRegNum == null ||
-         r.RegistrationNumber.Contains(searchByRegNum));
-            return View(model);
+   
+        public ActionResult SearchByRegNumber(string searchByRegNum = "", string searchByAny = "", string Sorting = "") {
+            var model = db.ParkedVehicles.Select(g => g);
+
+
+            //model = model.Where(r => r.VehicleType.Contains(searchByAny) && r.RegistrationNumber.Contains(searchByRegNum));
+
+
+            //if (searchByRegNum != "")
+            //{
+
+
+            //    model = model.Where(r => r.Model.Contains(searchByAny));
+
+            //}
+            //else if (searchByAny != "")
+            //{
+            //    model = model.Where(r => r.Model.Contains(searchByAny));
+
+            //}
+
+            //else
+            //{
+            //    model = model.Where(r => r.Color.Contains("rabbit"));
+
+            //}
+
+
+            if(Sorting != "")
+            {
+                switch (Sorting)
+                {
+
+                    case "RegistrationNumber":
+                        model = model.OrderBy(x => x.RegistrationNumber);
+                        break;
+                    case "VehicleType":
+                        model = model.OrderBy(x => x.VehicleType);
+                        break;
+                    case "CheckinTime":
+                        model = model.OrderBy(x => x.CheckInTime);
+                        break;
+                   
+
+                }
+               
+
+
+            }
+
+
+
+
+            if (searchByRegNum != "")
+            {
+                if (searchByAny != "")
+
+                    model = model.Where(r => r.VehicleType.Contains(searchByAny) && r.RegistrationNumber.Contains(searchByRegNum));
+
+                else
+                {
+
+                    model = model.Where(r => r.RegistrationNumber.Contains(searchByRegNum));
+
+                }
+
+            }
+            else if (searchByAny != "")
+            {
+
+
+                model = model.Where(r => r.VehicleType.Contains(searchByAny));
+
+            }
+            else
+            {
+
+                model = model.Select(r => r);
+
+            }
+
+            //     model = db.ParkedVehicles.Where(r => searchByRegNum == null || 
+            //r.RegistrationNumber.Contains(searchByRegNum) || searchByAny == null ||
+            //r.VehicleType.Contains(searchByAny)).Select(g => new ParkedVehicleViewModel { Id = g.Id, RegistrationNumber = g.RegistrationNumber, VehicleType = g.VehicleType, CheckInTime = g.CheckInTime });
+            var xxxx = model.Select(g => new ParkedVehicleViewModel { Id = g.Id, RegistrationNumber = g.RegistrationNumber, VehicleType = g.VehicleType, CheckInTime = g.CheckInTime });
+
+
+            return View(xxxx);
     }
 
 

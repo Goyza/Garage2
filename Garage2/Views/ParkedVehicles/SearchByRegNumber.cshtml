@@ -1,24 +1,25 @@
-﻿@model IEnumerable<Garage2.Models.ParkedVehicle>
+﻿@model IEnumerable<Garage2.Models.ParkedVehicleViewModel>
 
 @{
     ViewBag.Title = "Garage";
+    string nosorting;
+
 }
 
 <h2>Garage</h2>
 
 <form method="get">
-    <input type="search" name="searchByRegNum" />
-    <input type="submit" value="Search" />
+    <input type="search" name="searchByRegNum" placeholder="XXXXXX"/>
+    <input type="search" name="searchByAny" placeholder="XXXXXX" />
+    <input type="submit" value="Search by registration number" />
 </form>
 
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.RegistrationNumber)
+            @Html.ActionLink("Registration number", "SearchByRegNumber", new { Sorting = "RegistrationNumber" })          
         </th>
         @*<th>
             @Html.DisplayNameFor(model => model.Brand)
@@ -27,7 +28,7 @@
             @Html.DisplayNameFor(model => model.VehicleType)
         </th>*@
         <th>
-            @Html.DisplayNameFor(model => model.Model)
+            @Html.ActionLink("Vehicle type", "SearchByRegNumber", new { Sorting = "VehicleType" })           
         </th>
         @*<th>
             @Html.DisplayNameFor(model => model.Color)
@@ -35,11 +36,12 @@
         <th>
             @Html.DisplayNameFor(model => model.FuelType)
         </th>*@
-        <th>
-            @Html.DisplayNameFor(model => model.CheckInTime)
+        <th>               
+            @Html.ActionLink("Time entering garage", "SearchByRegNumber", new { Sorting = "CheckinTime" })
         </th>
         <th>
             Parking time
+            <input type="button" value="Sort by" />
         </th>
         <th></th>
     </tr>
@@ -56,7 +58,7 @@
             @Html.DisplayFor(modelItem => item.VehicleType)
         </td>*@
         <td>
-            @Html.DisplayFor(modelItem => item.Model)
+            @Html.DisplayFor(modelItem => item.VehicleType)
         </td>
         @*<td>
             @Html.DisplayFor(modelItem => item.Color)
@@ -69,8 +71,8 @@
         </td>
         <td>
             @*It nessessary to create valid format!!*@
-          Days:@(DateTime.Now.Subtract(item.CheckInTime).Days) Hours:@(DateTime.Now.Subtract(item.CheckInTime).Hours) Min:@(DateTime.Now.Subtract(item.CheckInTime).Minutes)
-        </td>
+            Days:@(item.ParkingTime.Days) Hours:@(item.ParkingTime.Hours) Min:@(item.ParkingTime.Minutes)
+       </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
             @Html.ActionLink("Details", "Details", new { id = item.Id }) |
