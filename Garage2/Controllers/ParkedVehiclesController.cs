@@ -17,9 +17,10 @@ namespace Garage2.Controllers
         
         
         private GarageContext db = new GarageContext();
+        private Parking parking = new Parking();
         //Search By Registration Number
 
-   
+
         public ActionResult SearchByRegNumber(string searchByRegNum = "", string searchByAny = "", string Sorting = "") {
             var model = db.ParkedVehicles.Select(g => g);
 
@@ -113,7 +114,11 @@ namespace Garage2.Controllers
     // GET: ParkedVehicles
     public ActionResult Index()
         {
-            var model = db.ParkedVehicles.Select(g => new ParkedVehicleViewModel { Id  = g.Id, RegistrationNumber=g.RegistrationNumber, VehicleType= g.VehicleType, CheckInTime=g.CheckInTime }
+
+            var model = db.ParkedVehicles.Select(g => new ParkedVehicleViewModel { Id  = g.Id, RegistrationNumber=g.RegistrationNumber
+                , VehicleType= g.VehicleType, CheckInTime=g.CheckInTime
+             //   , ParkingPlace = parking.GetParkingPlaceString(g.Id)
+            }
                 );
             return View(model);
         }
@@ -179,6 +184,16 @@ namespace Garage2.Controllers
                 parkedVehicle.CheckInTime = DateTime.Now;
                 db.ParkedVehicles.Add(parkedVehicle);
                 db.SaveChanges();
+                //Parking     
+                var newParkingPlace = parking.GetFreeParkingPlace(parkedVehicle.VehicleType);
+                foreach (var item in newParkingPlace)
+                {
+                    var parkingVehicle = new Parking() { VehicleType = parkedVehicle.VehicleType, ParkingPlace = item , ParkedVehicleId = parkedVehicle.Id };
+                    db.Parkings.Add(parkingVehicle);
+                }
+
+                db.SaveChanges();
+
                 return RedirectToAction("Index");
             }
 
@@ -239,7 +254,32 @@ namespace Garage2.Controllers
             ParkedVehicle parkedVehicle = db.ParkedVehicles.Find(id);
             db.ParkedVehicles.Remove(parkedVehicle);
             db.SaveChanges();
+            //Remove Parking     
+            var removeParkingPlace = parking.GetParkingPlaceId(parkedVehicle.Id);
+            foreach (var item in removeParkingPlace)
+            {
+                Parking removedVehicle = db.Parkings.Find(item);
+                db.Parkings.Remove(removedVehicle);
+            }
+
+            db.SaveChanges();
+
+
+
+
             return RedirectToAction("Kvitto", parkedVehicle);
+        }
+        //GetAllSpaces
+        public ActionResult GaragePlacesInfo ()
+        {
+            var model = new ParkingInfoViewModel()
+            {
+                ParkingTotalSpace = parking.ParkingSize,
+                ParkingAvailableSpace = parking.GetOccupiedParkingPlaces()
+            };
+            
+            return PartialView(model);
+
         }
 
         protected override void Dispose(bool disposing)
