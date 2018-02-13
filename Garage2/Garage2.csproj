@@ -153,14 +153,17 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201802091546583_Clear.cs" />
-    <Compile Include="Migrations\201802091546583_Clear.Designer.cs">
-      <DependentUpon>201802091546583_Clear.cs</DependentUpon>
+    <Compile Include="Migrations\201802131037408_Parking.cs" />
+    <Compile Include="Migrations\201802131037408_Parking.Designer.cs">
+      <DependentUpon>201802131037408_Parking.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\KvittoViewModel.cs" />
     <Compile Include="Models\ParkedVehicle.cs" />
     <Compile Include="Models\ParkedVehicleViewModel.cs" />
+    <Compile Include="Models\Parking.cs" />
+    <Compile Include="Models\ParkingInfoViewModel.cs" />
+    <Compile Include="Models\VehicleTypeList.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -205,6 +208,7 @@
     <Content Include="Views\ParkedVehicles\SearchByRegNumber.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\ParkedVehicles\Kvitto.cshtml" />
+    <Content Include="Views\ParkedVehicles\GaragePlacesInfo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -223,8 +227,8 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201802091546583_Clear.resx">
-      <DependentUpon>201802091546583_Clear.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201802131037408_Parking.resx">
+      <DependentUpon>201802131037408_Parking.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
