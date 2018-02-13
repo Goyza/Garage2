@@ -1,4 +1,8 @@
-﻿@model Garage2.Models.KvittoViewModel
+﻿@{
+    Layout = "~/Views/Shared/_LayoutKvitto.cshtml";
+}
+
+@model Garage2.Models.KvittoViewModel
 
 @{
     ViewBag.Title = "Kvitto";
@@ -60,6 +64,6 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Back to List", "Index", new { @class = "btn btn-success" })
-    @Html.ActionLink("Print", "printableKvitto", new { @class = "btn btn-success" })
+    
+    @Html.ActionLink("Back to List", "Index", new {@class = "btn btn-success"})
 </p>

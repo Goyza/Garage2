@@ -205,6 +205,8 @@
     <Content Include="Views\ParkedVehicles\SearchByRegNumber.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\ParkedVehicles\Kvitto.cshtml" />
+    <Content Include="Views\Shared\_LayoutKvitto.cshtml" />
+    <Content Include="Views\ParkedVehicles\printableKvitto.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -116,7 +116,6 @@ namespace Garage2.Controllers
             var model = db.ParkedVehicles.Select(g => new ParkedVehicleViewModel { Id  = g.Id, RegistrationNumber=g.RegistrationNumber, VehicleType= g.VehicleType, CheckInTime=g.CheckInTime }
                 );
             return View(model);
-
         }
 
         // GET: Kvitto
@@ -133,6 +132,19 @@ namespace Garage2.Controllers
 
         }
 
+        // GET: Kvitto
+        public ActionResult printableKvitto(ParkedVehicle parkedVehicle)
+        {
+            var kvittoModel = new KvittoViewModel
+            {
+                RegistrationNumber = parkedVehicle.RegistrationNumber,
+                CheckInTime = parkedVehicle.CheckInTime,
+                CheckOutTime = DateTime.Now,
+                ParkingTime = DateTime.Now - parkedVehicle.CheckInTime,
+            };
+            return View(kvittoModel);
+
+        }
 
         // GET: ParkedVehicles/Details/5
         public ActionResult Details(int? id)
