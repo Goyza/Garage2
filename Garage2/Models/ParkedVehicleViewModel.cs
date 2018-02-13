@@ -15,6 +15,7 @@ namespace Garage2.Models
             public DateTime CheckInTime { get; set; }
             [DisplayFormat(DataFormatString = "{0:%d}d {0:%h}h {0:%m}m", ApplyFormatInEditMode = true)]
             public TimeSpan ParkingTime { get { return DateTime.Now-CheckInTime; } }
+      
 
     }
 }

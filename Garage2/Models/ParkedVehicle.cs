@@ -8,8 +8,8 @@ using System.Web;
 namespace Garage2.Models
 {
         public class ParkedVehicle
-        {
-
+        {      
+            
         //ParkedVehicle class contains list of available vehicle 
         public int Id { get; set; }
         //Nessesary to create validation for number
@@ -53,7 +53,7 @@ namespace Garage2.Models
         {
             Undefined, Diesel, Gasoline, Electric
         }
-
+        
 
         public class CustomRegistrationNumberValidator : ValidationAttribute
         {

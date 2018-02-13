@@ -1,18 +1,38 @@
 ﻿@model IEnumerable<Garage2.Models.ParkedVehicleViewModel>
 
+
 @{
     ViewBag.Title = "Garage";
-    string nosorting;
+    
 
 }
+
+
+
 
 <h2>Garage</h2>
 
 <form method="get">
+    <h4>Search by registration number</h4>
     <input type="search" name="searchByRegNum" placeholder="XXXXXX"/>
-    <input type="search" name="searchByAny" placeholder="XXXXXX" />
-    <input type="submit" value="Search by registration number" />
-</form>
+    <input type="submit" value="Search" /><br />
+    <h4>Search by vehicles characteristics</h4>
+    <select name="brand">
+        <option value="">Brand</option>
+        <option value="Toyota">Toyota</option>
+        <option value="Ford">Ford</option>
+        <option value="Volvo">Volvo</option>
+    </select>
+    <select name="vehicleType">
+        <option value="">Vehicle Type</option>
+        <option value="Car">Car</option>
+        <option value="Bus">Bus</option>
+        <option value="Boat">Boat</option>
+    </select>
+    
+
+    <input type="submit" value="Search " />   
+</form><br />
 
 
 
@@ -40,8 +60,7 @@
             @Html.ActionLink("Time entering garage", "SearchByRegNumber", new { Sorting = "CheckinTime" })
         </th>
         <th>
-            Parking time
-            <input type="button" value="Sort by" />
+            @Html.ActionLink("Parking Time", "SearchByRegNumber", new { Sorting = "CheckinTime" })                  
         </th>
         <th></th>
     </tr>

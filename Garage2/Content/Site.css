@@ -1,12 +1,42 @@
 ﻿body {
-    padding-top: 50px;
     padding-bottom: 20px;
+    background-color: #A2BFC7;
+}
+
+.layout {
+    background-color: whitesmoke;
+}
+
+header {
+    background-image: url(header.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 395px;
+}
+
+.navbar-brand {
+    font-size: 1.8em;
+}
+
+
+.navbar li {
+    font-size: 1.4em;
+}
+
+h1, h2 {
+
+    margin-top: 0px;
+    padding-top: 0px;
+}
+
+.navbar {background-color: #5C0C0C;
 }
 
 /* Set padding to keep content from hitting the edges */
 .body-content {
-    padding-left: 15px;
-    padding-right: 15px;
+    padding: 50px;
+    background-color: whitesmoke;
+    border-radius: 25px;
 }
 
 /* Override the default bootstrap behavior where horizontal description lists 
