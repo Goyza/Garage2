@@ -9,5 +9,6 @@ namespace Garage2.Models
     {
         public int ParkingTotalSpace { get; set; }
         public int ParkingAvailableSpace  { get; set; }
+        public int ParkingMotoAvailableSpace { get; set; }
     }
 }

@@ -294,7 +294,8 @@ namespace Garage2.Controllers
             var model = new ParkingInfoViewModel()
             {
                 ParkingTotalSpace = parking.ParkingSize,
-                ParkingAvailableSpace = parking.GetOccupiedParkingPlaces()
+                ParkingAvailableSpace = parking.GetOccupiedParkingPlaces(),
+                ParkingMotoAvailableSpace=parking.GetFreeMotoPlaces()
             };
             
             return PartialView(model);

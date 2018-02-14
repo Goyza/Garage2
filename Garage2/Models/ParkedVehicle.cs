@@ -7,9 +7,10 @@ using System.Web;
 
 namespace Garage2.Models
 {
-        public class ParkedVehicle
-        {      
-            
+        public class ParkedVehicle: IValidatableObject
+        {
+
+        private Parking parking = new Parking();
         //ParkedVehicle class contains list of available vehicle 
         public int Id { get; set; }
         //Nessesary to create validation for number
@@ -35,6 +36,17 @@ namespace Garage2.Models
         [DisplayFormat(DataFormatString = "{0:yyyy/MM/dd HH:mm}", ApplyFormatInEditMode = true)]
         public DateTime CheckInTime { get; set; }
 
+        //Parking Validation
+        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+        {
+
+            var newParkingPlace = parking.GetFreeParkingPlace(VehicleType);
+            if (newParkingPlace.Count()==0)
+            {
+                yield return new ValidationResult("Not Enogth space!");
+            }
+        }
+
         }
 
         public enum Brands
@@ -43,7 +55,7 @@ namespace Garage2.Models
         }
         public enum VehicleTypes
         {
-            Undefined, Car, Bus, Boat
+            Undefined, Car, Bus, Boat, Moto
         }
         public enum Colors
         {
