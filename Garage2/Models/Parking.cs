@@ -156,7 +156,11 @@ namespace Garage2.Models
                             .Select(g => new { Name = g.Key, Count = g.Count() });
                     if (motolist.Count()>0)
                     {
-                    yield return new ParkingStatView() { ParkingPlace = i, PlaceInfo = $"Moto:{motolist.Count()}/3" };
+                        foreach (var item in motolist)
+                        {
+                            yield return new ParkingStatView() { ParkingPlace = i, PlaceInfo = $"Moto:{item.Count}/3" };
+                        }
+                   
                     }
                     else
                     yield return new ParkingStatView() { ParkingPlace = i, PlaceInfo = "Occupied" };
