@@ -14,12 +14,10 @@ namespace Garage2.Controllers
     public class ParkedVehiclesController : Controller
     {
 
-        
-        
         private GarageContext db = new GarageContext();
-        //Search By Registration Number
 
    
+        //Search By Registration Number
         public ActionResult SearchByRegNumber(string searchByRegNum = "", string searchByAny = "", string Sorting = "") {
             var model = db.ParkedVehicles.Select(g => g);
 
@@ -109,9 +107,60 @@ namespace Garage2.Controllers
             return View(xxxx);
     }
 
+        public ActionResult Statistics()
+        {
+            var vehicles = db.ParkedVehicles.Select(g => g.VehicleType);
 
-    // GET: ParkedVehicles
-    public ActionResult Index()
+            int cars = 0;
+            int buses = 0;
+            int boats = 0;
+            int undefined = 0;
+
+            foreach (string e in vehicles)
+                {
+                    if(e == "Car")
+                    {
+                    cars++;                  
+                    }
+                    else if(e == "Bus")
+                    {
+                    buses++; ;     
+                    }
+                    else if (e == "Boats")
+                    {
+                    boats++;
+                    }
+                    else if (e == "Undefined")
+                    {
+                    undefined++;
+                    }
+                }
+
+            Statistics statistics = new Statistics
+            {
+                NumberOfVehicles = vehicles.Count(),
+                NumbeOfCars = cars,
+                NumberOfBuses = buses,
+                NumberOfBoats = boats,
+                NumberOfUndefined = undefined
+            };
+
+            var checkInTime = db.ParkedVehicles.Select(t => t.CheckInTime);
+ 
+            foreach (DateTime t in checkInTime)
+            {
+                statistics.TotParkingTime += DateTime.Now - t;
+            }
+
+            statistics.Revenue = (Decimal) statistics.TotParkingTime.TotalMinutes * CostPerMinute.costPerMinute;
+           
+            return View(statistics);
+        }
+
+
+
+        // GET: ParkedVehicles
+        public ActionResult Index()
         {
             var model = db.ParkedVehicles.Select(g => new ParkedVehicleViewModel { Id  = g.Id, RegistrationNumber=g.RegistrationNumber, VehicleType= g.VehicleType, CheckInTime=g.CheckInTime }
                 );
