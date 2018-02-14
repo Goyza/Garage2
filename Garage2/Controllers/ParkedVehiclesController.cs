@@ -241,11 +241,25 @@ namespace Garage2.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,RegistrationNumber,Brand,VehicleType,Model,Color,FuelType")] ParkedVehicle parkedVehicle)
+        public ActionResult Create([Bind(Include = "Id,RegistrationNumber,Brand,VehicleType,Model,Color,FuelType")] ParkingVehicleEdit parkedVehicleEdit)
         {
             if (ModelState.IsValid)
             {
-                parkedVehicle.CheckInTime = DateTime.Now;
+             //   parkedVehicle.CheckInTime = DateTime.Now;
+
+                ParkedVehicle parkedVehicle = new ParkedVehicle()
+                {
+                    Brand = parkedVehicleEdit.Brand,
+                    Id = parkedVehicleEdit.Id,
+                    CheckInTime = DateTime.Now
+                ,
+                    Color = parkedVehicleEdit.Color,
+                    FuelType = parkedVehicleEdit.FuelType,
+                    Model = parkedVehicleEdit.Model,
+                    RegistrationNumber = parkedVehicleEdit.RegistrationNumber,
+                    VehicleType = parkedVehicleEdit.VehicleType
+                };
+
                 db.ParkedVehicles.Add(parkedVehicle);
                 db.SaveChanges();
                 //Parking     
@@ -261,7 +275,7 @@ namespace Garage2.Controllers
                 return RedirectToAction("Index");
             }
 
-            return View(parkedVehicle);
+            return View(parkedVehicleEdit);
         }
 
         // GET: ParkedVehicles/Edit/5

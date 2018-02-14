@@ -103,6 +103,10 @@ namespace Garage2.Models
                         }
                     }
                 }
+                if (tempSize>0)
+                {
+                    emptyLine = new List<int>();
+                }
 
             }
 
