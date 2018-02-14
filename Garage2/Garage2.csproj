@@ -158,12 +158,14 @@
       <DependentUpon>201802131037408_Parking.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\CostPerMinute.cs" />
     <Compile Include="Models\KvittoViewModel.cs" />
     <Compile Include="Models\ParkedVehicle.cs" />
     <Compile Include="Models\ParkedVehicleViewModel.cs" />
     <Compile Include="Models\Parking.cs" />
     <Compile Include="Models\ParkingInfoViewModel.cs" />
     <Compile Include="Models\VehicleTypeList.cs" />
+    <Compile Include="Models\Statistics.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -213,6 +215,7 @@
     <Content Include="Views\Shared\_LayoutKvitto.cshtml" />
     <Content Include="Views\ParkedVehicles\printableKvitto.cshtml" />
     <Content Include="Views\ParkedVehicles\GaragePlacesInfo.cshtml" />
+    <Content Include="Views\ParkedVehicles\Statistics.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
