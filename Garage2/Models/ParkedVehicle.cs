@@ -7,14 +7,13 @@ using System.Web;
 
 namespace Garage2.Models
 {
-        public class ParkedVehicle: IValidatableObject
+        public class ParkedVehicle//: IValidatableObject
         {
 
         private Parking parking = new Parking();
         //ParkedVehicle class contains list of available vehicle 
         public int Id { get; set; }
         //Nessesary to create validation for number
-        [CustomRegistrationNumberValidator(ErrorMessage = "Registration Number should be Uniq and have format XXXXXX")]
         [Required(ErrorMessage = "Please type Registratin Number")]
         public string RegistrationNumber { get; set; }
         // Brand of vehicle see enum Brands(optional)
@@ -37,15 +36,15 @@ namespace Garage2.Models
         public DateTime CheckInTime { get; set; }
 
         //Parking Validation
-        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
-        {
+        //public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+        //{
 
-            var newParkingPlace = parking.GetFreeParkingPlace(VehicleType);
-            if (newParkingPlace.Count()==0)
-            {
-                yield return new ValidationResult("Not Enogth space!");
-            }
-        }
+        //    var newParkingPlace = parking.GetFreeParkingPlace(VehicleType);
+        //    if (newParkingPlace.Count()==0)
+        //    {
+        //        yield return new ValidationResult("Not Enogth space!");
+        //    }
+        //}
 
         }
 
@@ -67,32 +66,7 @@ namespace Garage2.Models
         }
         
 
-        public class CustomRegistrationNumberValidator : ValidationAttribute
-        {
-        private GarageContext db = new GarageContext();
-            public CustomRegistrationNumberValidator() : base("{0} Is to wrong")
-            {
 
-            }
-
-            protected override ValidationResult IsValid(object value, ValidationContext Context)
-            {
-                if (value != null)
-                {
-                    var valueAsString = value.ToString().Trim();
-                var alreadyExist = db.ParkedVehicles.Where(r => r.RegistrationNumber.Equals(valueAsString));
-
-                    if (valueAsString.Length > 6 || alreadyExist.Count()>1 )
-                    {
-                    var errorMessage = FormatErrorMessage(Context.DisplayName);
-                    return new ValidationResult(errorMessage);
-
-                    }
-
-                }
-                return ValidationResult.Success;
-            }
-        }
         
     
 }
