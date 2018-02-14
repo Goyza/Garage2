@@ -4,11 +4,10 @@
     ViewBag.Title = "Statistics";
 }
 
-<h2>Statistics</h2>
+<h1>Statistics</h1>
 
 <div>
-    <h4>Statistics</h4>
-    <hr />
+     
     <dl class="dl-horizontal">
         <dt>
             @Html.DisplayNameFor(model => model.NumberOfVehicles)
@@ -41,6 +40,13 @@
         <dd>
             @Html.DisplayFor(model => model.NumberOfBoats)
         </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.NumberOfMoto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NumberOfMoto)
+        </dd>
 
         <dt>
             @Html.DisplayNameFor(model => model.NumberOfUndefined)
@@ -68,7 +74,4 @@
 
     </dl>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+

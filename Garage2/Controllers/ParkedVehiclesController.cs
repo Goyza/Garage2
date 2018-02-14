@@ -123,6 +123,7 @@ namespace Garage2.Controllers
             int cars = 0;
             int buses = 0;
             int boats = 0;
+            int moto = 0;
             int undefined = 0;
 
             foreach (string e in vehicles)
@@ -139,7 +140,11 @@ namespace Garage2.Controllers
                     {
                     boats++;
                     }
-                    else if (e == "Undefined")
+                else if (e == "Moto")
+                {
+                    moto++;
+                }
+                else if (e == "Undefined")
                     {
                     undefined++;
                     }
@@ -151,6 +156,7 @@ namespace Garage2.Controllers
                 NumbeOfCars = cars,
                 NumberOfBuses = buses,
                 NumberOfBoats = boats,
+                NumberOfMoto = moto,
                 NumberOfUndefined = undefined
             };
 
@@ -332,8 +338,8 @@ namespace Garage2.Controllers
             var model = new ParkingInfoViewModel()
             {
                 ParkingTotalSpace = parking.ParkingSize,
-                ParkingAvailableSpace = parking.GetOccupiedParkingPlaces(),
-                ParkingMotoAvailableSpace=parking.GetFreeMotoPlaces()
+                ParkingAvailableSpace = parking.ParkingSize - parking.GetOccupiedParkingPlaces(),
+                ParkingMotoAvailableSpace= (parking.ParkingSize - parking.GetOccupiedParkingPlaces()) * 3 + parking.GetFreeMotoPlaces()
             };
             
             return PartialView(model);

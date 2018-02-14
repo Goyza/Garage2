@@ -156,7 +156,15 @@ namespace Garage2.Models
         {
             var motolist = db.Parkings.Where(k => k.VehicleType.Equals("Moto")).GroupBy(p => p.ParkingPlace).Where(k => k.Count() < 3).OrderBy(x => x.Key)
                 .Select(g => new { Name = g.Key, Count = 3-g.Count() });
+
+            if (motolist.Count()==0)
+            {
+                return 0;
+            }
+            else
+            { 
             return motolist.Sum(r=>r.Count);
+            }
         }
 
 
