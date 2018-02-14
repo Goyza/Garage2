@@ -136,20 +136,31 @@ namespace Garage2.Models
             return parkingCount.Count();
         }
         //Enum List af available places
-        public IEnumerable<int> GetAllFreeParkingPlace()
+        public IEnumerable<ParkingStatView> GetAllFreeParkingPlace()
         {
             for (int i = 1; i <= parkingSize; i++)
             {
                 var firstEmpty = db.Parkings.Where(r => r.ParkingPlace.Equals(i));
                 if (firstEmpty.Count() == 0)
                 {
-                    yield return i;
+                    yield return new ParkingStatView() { ParkingPlace = i, PlaceInfo = "Empty" };
+                }
+                else
+                {
+                        var motolist = db.Parkings.Where(k => k.VehicleType.Equals("Moto")).Where(r=>r.ParkingPlace==i)
+                            .GroupBy(p => p.ParkingPlace)                          
+                            .Select(g => new { Name = g.Key, Count = g.Count() });
+                    if (motolist.Count()>0)
+                    {
+                    yield return new ParkingStatView() { ParkingPlace = i, PlaceInfo = $"Moto:{motolist.Count()}/3" };
+                    }
+                    else
+                    yield return new ParkingStatView() { ParkingPlace = i, PlaceInfo = "Occupied" };
                 }
 
 
             }
-
-
+       
         }
         //Quntity of FREE moto places
         public int GetFreeMotoPlaces()
@@ -167,6 +178,16 @@ namespace Garage2.Models
             }
         }
 
+        public string statstring()
+        {
+            var outstring = "";
+            foreach (var item in GetAllFreeParkingPlace())
+            {
+                outstring += " " + item.ParkingPlace + ":" + item.PlaceInfo;
+            }
+
+            return outstring;
+        }
 
     }
 

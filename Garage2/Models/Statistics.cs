@@ -17,5 +17,6 @@ namespace Garage2.Models
         [DisplayFormat(DataFormatString = ("{0:%d}d {0:%h}h {0:%m}m"), ApplyFormatInEditMode = true)]
         public TimeSpan TotParkingTime { get; set; }
         public Decimal Revenue { get; set; }
+        public string ParkingStatString { get; set; }
     }
 }

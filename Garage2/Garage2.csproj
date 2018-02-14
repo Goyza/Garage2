@@ -164,6 +164,7 @@
     <Compile Include="Models\ParkedVehicleViewModel.cs" />
     <Compile Include="Models\Parking.cs" />
     <Compile Include="Models\ParkingInfoViewModel.cs" />
+    <Compile Include="Models\ParkingStatView.cs" />
     <Compile Include="Models\VehicleTypeList.cs" />
     <Compile Include="Models\Statistics.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
