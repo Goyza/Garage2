@@ -1,6 +1,7 @@
 ﻿using Garage2.DataAccessLayer;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -15,6 +16,7 @@ namespace Garage2.Models
         public int Id { get; set; }
         public int ParkingPlace { get; set; }
         public string VehicleType { get; set; }
+        [Required]
         public int ParkedVehicleId { get; set; }
         public int ParkingSize { get { return parkingSize; }}
 
@@ -156,7 +158,11 @@ namespace Garage2.Models
                             .Select(g => new { Name = g.Key, Count = g.Count() });
                     if (motolist.Count()>0)
                     {
-                    yield return new ParkingStatView() { ParkingPlace = i, PlaceInfo = $"Moto:{motolist.Count()}/3" };
+                        foreach (var item in motolist)
+                        {
+                            yield return new ParkingStatView() { ParkingPlace = i, PlaceInfo = $"Moto:{item.Count}/3" };
+                        }
+                   
                     }
                     else
                     yield return new ParkingStatView() { ParkingPlace = i, PlaceInfo = "Occupied" };
