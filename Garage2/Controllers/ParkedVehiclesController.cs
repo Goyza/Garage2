@@ -333,14 +333,14 @@ namespace Garage2.Controllers
             db.ParkedVehicles.Remove(parkedVehicle);
             db.SaveChanges();
             //Remove Parking     
-            var removeParkingPlace = parking.GetParkingPlaceId(parkedVehicle.Id);
-            foreach (var item in removeParkingPlace)
-            {
-                Parking removedVehicle = db.Parkings.Find(item);
-                db.Parkings.Remove(removedVehicle);
-            }
+            //var removeParkingPlace = parking.GetParkingPlaceId(parkedVehicle.Id);
+            //foreach (var item in removeParkingPlace)
+            //{
+            //    Parking removedVehicle = db.Parkings.Find(item);
+            //    db.Parkings.Remove(removedVehicle);
+            //}
 
-            db.SaveChanges();
+            //db.SaveChanges();
 
 
 

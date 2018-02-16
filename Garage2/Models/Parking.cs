@@ -1,6 +1,7 @@
 ﻿using Garage2.DataAccessLayer;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -15,6 +16,7 @@ namespace Garage2.Models
         public int Id { get; set; }
         public int ParkingPlace { get; set; }
         public string VehicleType { get; set; }
+        [Required]
         public int ParkedVehicleId { get; set; }
         public int ParkingSize { get { return parkingSize; }}
 
