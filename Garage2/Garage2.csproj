@@ -218,6 +218,7 @@
     <Content Include="Views\ParkedVehicles\printableKvitto.cshtml" />
     <Content Include="Views\ParkedVehicles\GaragePlacesInfo.cshtml" />
     <Content Include="Views\ParkedVehicles\Statistics.cshtml" />
+    <Content Include="Views\ParkedVehicles\_ParkingStatView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
