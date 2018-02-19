@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Garage2.Models.ParkedVehicleViewModel>
+﻿@model IEnumerable<Garage2.Models.ParkedVehicle>
 
 @{
     ViewBag.Title = "Garage";
@@ -14,15 +14,15 @@
         <th>
             @Html.DisplayNameFor(model => model.VehicleType)
         </th>
-        
+        <th>
+            @Html.DisplayNameFor(model => model.CheckInTime)
+        </th>
         <th>
             @Html.DisplayNameFor(model => model.ParkingTime)
         </th>
-       
         <th>
-        Customer
+            @Html.DisplayNameFor(model => model.ParkingPlace)
         </th>
-
         <th></th>
     </tr>
 
@@ -34,17 +34,17 @@
         <td>
             @Html.DisplayFor(modelItem => item.VehicleType)
         </td>
-        
+        <td>
+            @Html.DisplayFor(modelItem => item.CheckInTime)
+        </td>
         <td>
             @*It nessessary to create valid format!!*@
             @*Days:@(item.ParkingTime.Days) Hours:@(item.ParkingTime.Hours) Min:@(item.ParkingTime.Minutes)*@
             @Html.DisplayFor(modelItem => item.ParkingTime)
         </td>
-        
         <td>
-            @Html.DisplayFor(modelItem => item.Customer)
+            @Html.DisplayFor(modelItem => item.ParkingPlace)
         </td>
-
         <td>
             @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
             @Html.ActionLink("Details", "Details", new { id = item.Id }) |

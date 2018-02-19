@@ -181,8 +181,12 @@ namespace Garage2.Controllers
     public ActionResult Index()
         {
 
-            var model = db.ParkedVehicles.Select(g => new ParkedVehicleViewModel { Id  = g.Id, RegistrationNumber=g.RegistrationNumber
-                , VehicleType= g.VehicleType, CheckInTime=g.CheckInTime
+            var model = db.ParkedVehicles.Select(g => new ParkedVehicleViewModel
+            { 
+              RegistrationNumber = g.RegistrationNumber,
+              VehicleType = g.VehicleType,
+              CheckInTime = g.CheckInTime,
+              Customer = g.Customer.FirstName + g.Customer.LastName
              //   , ParkingPlace = parking.GetParkingPlaceString(g.Id)
             }
                 );
