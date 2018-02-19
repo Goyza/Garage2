@@ -17,10 +17,8 @@ namespace Garage2.Controllers
         private GarageContext db = new GarageContext();
         private Parking parking = new Parking();
         private VehicleTypeList vehicleTypeList = new VehicleTypeList();
-       // private Customer customer = new Customer();
+
         //Search By Registration Number
-
-
         public ActionResult SearchByRegNumber(string searchByRegNum = "", string brand = "", string vehicletype = "", string vehiclemodel = "", string color = "", string typeoffuel = "", string Sorting = "") {
             var model = db.ParkedVehicles.Select(g => g);
 
@@ -57,7 +55,7 @@ namespace Garage2.Controllers
                         model = model.OrderBy(x => x.RegistrationNumber);
                         break;
                     case "VehicleType":
-                        model = model.OrderBy(x => x.VehicleType);
+                        model = model.OrderBy(x => x.VehicleTypeList.VehicleType);
                         break;
                     case "CheckinTime":
                         model = model.OrderBy(x => x.CheckInTime);
@@ -86,7 +84,7 @@ namespace Garage2.Controllers
 
             if (vehicletype != "")
             {
-                model = model.Where(r => r.VehicleType.Contains(vehicletype));
+                model = model.Where(r => r.VehicleTypeList.VehicleType.Contains(vehicletype));
 
             }
 
@@ -112,7 +110,8 @@ namespace Garage2.Controllers
             //     model = db.ParkedVehicles.Where(r => searchByRegNum == null || 
             //r.RegistrationNumber.Contains(searchByRegNum) || searchByAny == null ||
             //r.VehicleType.Contains(searchByAny)).Select(g => new ParkedVehicleViewModel { Id = g.Id, RegistrationNumber = g.RegistrationNumber, VehicleType = g.VehicleType, CheckInTime = g.CheckInTime });
-            var xxxx = model.Select(g => new ParkedVehicleViewModel { Id = g.Id, RegistrationNumber = g.RegistrationNumber, VehicleType = g.VehicleType, CheckInTime = g.CheckInTime });
+            var xxxx = model.Select(g => new ParkedVehicleViewModel { Id = g.Id
+                , RegistrationNumber = g.RegistrationNumber, VehicleType = g.VehicleTypeList.VehicleType, CheckInTime = g.CheckInTime, Owner = g.Customer.LastName + " " + g.Customer.FirstName });
 
 
             return View(xxxx);
@@ -120,7 +119,7 @@ namespace Garage2.Controllers
 
         public ActionResult Statistics()
         {
-            var vehicles = db.ParkedVehicles.Select(g => g.VehicleType);
+            var vehicles = db.ParkedVehicles.Select(g => g.VehicleTypeList.VehicleType);
 
             int cars = 0;
             int buses = 0;
@@ -182,8 +181,8 @@ namespace Garage2.Controllers
         {
 
             var model = db.ParkedVehicles.Select(g => new ParkedVehicleViewModel { Id  = g.Id, RegistrationNumber=g.RegistrationNumber
-                , VehicleType= g.VehicleType, CheckInTime=g.CheckInTime
-             //   , ParkingPlace = parking.GetParkingPlaceString(g.Id)
+                , VehicleType= g.VehicleTypeList.VehicleType, CheckInTime=g.CheckInTime, Owner=g.Customer.LastName +" "+ g.Customer.FirstName
+                //   , ParkingPlace = parking.GetParkingPlaceString(g.Id)
             }
                 );
             return View(model);
@@ -248,13 +247,7 @@ namespace Garage2.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,RegistrationNumber,Brand,VehicleType,Model,Color,FuelType,CustomerId,VehicleTypeListId")] ParkingVehicleEdit parkedVehicleEdit)
         {
-            var xxx = db.VehicleTypeLists.Where(r => r.Id == parkedVehicleEdit.VehicleTypeListId);
-            string yyy = "";
-
-            foreach (var item in xxx)
-            {
-                yyy = item.VehicleType;
-            }
+            //var xxx = db.VehicleTypeLists.Where(r => r.Id == parkedVehicleEdit.VehicleTypeListId).First();           
 
             if (ModelState.IsValid)
             {
@@ -270,8 +263,8 @@ namespace Garage2.Controllers
                     FuelType = parkedVehicleEdit.FuelType,
                     Model = parkedVehicleEdit.Model,
                     RegistrationNumber = parkedVehicleEdit.RegistrationNumber,
-                    VehicleType = yyy,
-                    CustomerId= parkedVehicleEdit.CustomerId,
+                   // VehicleType = xxx.VehicleType,
+                    CustomerId = parkedVehicleEdit.CustomerId,
                     VehicleTypeListId=parkedVehicleEdit.VehicleTypeListId
                 };
 
@@ -281,7 +274,7 @@ namespace Garage2.Controllers
                 var newParkingPlace = parking.GetFreeParkingPlace(parkedVehicle.VehicleTypeListId);
                 foreach (var item in newParkingPlace)
                 {
-                    var parkingVehicle = new Parking() { VehicleType = parkedVehicle.VehicleType ,
+                    var parkingVehicle = new Parking() { //VehicleType = parkedVehicle.VehicleType ,
                         ParkingPlace = item , ParkedVehicleId = parkedVehicle.Id };
                     db.Parkings.Add(parkingVehicle);
                 }

@@ -15,7 +15,7 @@ namespace Garage2.Models
 
         public int Id { get; set; }
         public int ParkingPlace { get; set; }
-        public string VehicleType { get; set; }
+        //public string VehicleType { get; set; }
         [Required]
         public int ParkedVehicleId { get; set; }
         //
@@ -26,19 +26,17 @@ namespace Garage2.Models
         //Enum list of available places for new Vehicle
         public IEnumerable<int> GetFreeParkingPlace(int vehicleTypeId)
         {
-            int vehicleTypeSize=0;
+            int vehicleTypeSize;
             emptyLine = new List<int>();
 
-            var xxx = db.VehicleTypeLists.Where(r => r.Id == vehicleTypeId);
+            var xxx = db.VehicleTypeLists.Where(r => r.Id == vehicleTypeId).First();
 
-            foreach (var item in xxx)
-            {
-                vehicleTypeSize = item.RequredSpace;
-            }
+            vehicleTypeSize = xxx.RequredSpace;
+            
 
             if (vehicleTypeSize < 0)
             {
-                var motolist = db.Parkings.Where(k => k.VehicleType.Equals("Moto")).GroupBy(p => p.ParkingPlace).Where(k => k.Count() < 3).OrderBy(x => x.Key)
+                var motolist = db.Parkings.Where(k => k.parkedVehicle.VehicleTypeList.VehicleType.Equals("Moto")).GroupBy(p => p.ParkingPlace).Where(k => k.Count() < 3).OrderBy(x => x.Key)
                     .Select(g => new { Name = g.Key, Count = g.Count() });
 
                 if (motolist.Count() >0)
@@ -142,7 +140,7 @@ namespace Garage2.Models
                 }
                 else
                 {
-                        var motolist = db.Parkings.Where(k => k.VehicleType.Equals("Moto")).Where(r=>r.ParkingPlace==i)
+                        var motolist = db.Parkings.Where(k => k.parkedVehicle.VehicleTypeList.VehicleType.Equals("Moto")).Where(r=>r.ParkingPlace==i)
                             .GroupBy(p => p.ParkingPlace)                          
                             .Select(g => new { Name = g.Key, Count = g.Count() });
                     if (motolist.Count()>0)
@@ -164,7 +162,7 @@ namespace Garage2.Models
         //Quntity of FREE moto places
         public int GetFreeMotoPlaces()
         {
-            var motolist = db.Parkings.Where(k => k.VehicleType.Equals("Moto")).GroupBy(p => p.ParkingPlace).Where(k => k.Count() < 3).OrderBy(x => x.Key)
+            var motolist = db.Parkings.Where(k => k.parkedVehicle.VehicleTypeList.VehicleType.Equals("Moto")).GroupBy(p => p.ParkingPlace).Where(k => k.Count() < 3).OrderBy(x => x.Key)
                 .Select(g => new { Name = g.Key, Count = 3-g.Count() });
 
             if (motolist.Count()==0)

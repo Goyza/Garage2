@@ -20,8 +20,8 @@ namespace Garage2.Models
         [StringLength(30, ErrorMessage = "Should be less than 30")]
         public string Brand { get; set; }
         // Type of vehicle, see enum VehicleTypes (optional)
-        [StringLength(30, ErrorMessage = "Should be less than 30")]
-        public string VehicleType { get; set; }
+        //[StringLength(30, ErrorMessage = "Should be less than 30")]
+        //public string VehicleType { get; set; }
         // Model of vehicle (optional)
         [StringLength(30, ErrorMessage = "Should be less than 30")]
         public string Model { get; set; }
