@@ -111,7 +111,7 @@ namespace Garage2.Controllers
             //r.RegistrationNumber.Contains(searchByRegNum) || searchByAny == null ||
             //r.VehicleType.Contains(searchByAny)).Select(g => new ParkedVehicleViewModel { Id = g.Id, RegistrationNumber = g.RegistrationNumber, VehicleType = g.VehicleType, CheckInTime = g.CheckInTime });
             var xxxx = model.Select(g => new ParkedVehicleViewModel { Id = g.Id
-                , RegistrationNumber = g.RegistrationNumber, VehicleType = g.VehicleTypeList.VehicleType, CheckInTime = g.CheckInTime, Owner = g.Customer.LastName + " " + g.Customer.FirstName });
+                , RegistrationNumber = g.RegistrationNumber, VehicleType = g.VehicleTypeList.VehicleType, CheckInTime = g.CheckInTime, Customer = g.Customer.LastName + " " + g.Customer.FirstName });
 
 
             return View(xxxx);
@@ -181,7 +181,7 @@ namespace Garage2.Controllers
         {
 
             var model = db.ParkedVehicles.Select(g => new ParkedVehicleViewModel { Id  = g.Id, RegistrationNumber=g.RegistrationNumber
-                , VehicleType= g.VehicleTypeList.VehicleType, CheckInTime=g.CheckInTime, Owner=g.Customer.LastName +" "+ g.Customer.FirstName
+                , VehicleType= g.VehicleTypeList.VehicleType, CheckInTime=g.CheckInTime, Customer=g.Customer.LastName +" "+ g.Customer.FirstName
                 //   , ParkingPlace = parking.GetParkingPlaceString(g.Id)
             }
                 );

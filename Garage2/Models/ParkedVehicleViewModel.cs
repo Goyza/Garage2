@@ -17,8 +17,8 @@ namespace Garage2.Models
             [DisplayFormat(DataFormatString = "{0:%d}d {0:%h}h {0:%m}m", ApplyFormatInEditMode = true)]
             public TimeSpan ParkingTime { get { return DateTime.Now-CheckInTime; } }
             public string ParkingPlace { get { return parking.GetParkingPlaceString(Id); } }
-        public string Customer { get; set; }
-            public string Owner { get; set; }
+            public string Customer { get; set; }
+           
 
 
     }
