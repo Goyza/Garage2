@@ -4,11 +4,22 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace Garage2.Models
 {
     public class ParkingVehicleEdit : IValidatableObject
     {
+        private readonly List<VehicleTypeList> _vhTypeList;
+        private readonly List<Customer> _customer;
+        private GarageContext db = new GarageContext();
+
+        public ParkingVehicleEdit()
+        {
+            _vhTypeList = db.VehicleTypeLists.ToList();
+            _customer = db.Customers.ToList();
+        }
+
         public int Id { get; set; }
         private Parking parking = new Parking();
         //Nessesary to create validation for number
@@ -40,12 +51,22 @@ namespace Garage2.Models
         public int VehicleTypeListId { get; set; }
         public virtual VehicleTypeList VehicleTypeList { get; set; }
 
+        public IEnumerable<SelectListItem> VehicleTypeListTest
+        {
+            get { return new SelectList(_vhTypeList, "Id", "VehicleType"); }
+        }
+
+        public IEnumerable<SelectListItem> CustomerListTest
+        {
+            get { return new SelectList(_customer, "Id", "LastName"); }
+        }
+
 
         //Parking Validation
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
 
-            var newParkingPlace = parking.GetFreeParkingPlace(VehicleType);
+            var newParkingPlace = parking.GetFreeParkingPlace(VehicleTypeListId);
             if (newParkingPlace.Count() == 0)
             {
                 yield return new ValidationResult("Not Enogth space!");

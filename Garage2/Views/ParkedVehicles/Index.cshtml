@@ -22,7 +22,9 @@
         <th>
         Customer
         </th>
-
+        <th>
+            Owner
+        </th>
         <th></th>
     </tr>
 
@@ -45,6 +47,9 @@
             @Html.DisplayFor(modelItem => item.Customer)
         </td>
 
+        <td>
+            @Html.DisplayFor(modelItem => item.Owner)
+        </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
             @Html.ActionLink("Details", "Details", new { id = item.Id }) |
