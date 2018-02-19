@@ -18,6 +18,9 @@ namespace Garage2.Models
         public string VehicleType { get; set; }
         [Required]
         public int ParkedVehicleId { get; set; }
+        //
+        public virtual ParkedVehicle parkedVehicle { get; set; }
+
         public int ParkingSize { get { return parkingSize; }}
 
         //Enum list of available places for new Vehicle
