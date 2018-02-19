@@ -24,31 +24,17 @@ namespace Garage2.Models
         public int ParkingSize { get { return parkingSize; }}
 
         //Enum list of available places for new Vehicle
-        public IEnumerable<int> GetFreeParkingPlace(string vehicleType)
+        public IEnumerable<int> GetFreeParkingPlace(int vehicleTypeId)
         {
-            int vehicleTypeSize;
+            int vehicleTypeSize=0;
             emptyLine = new List<int>();
 
-            switch (vehicleType)
-            {
-                case "Car":
-                    vehicleTypeSize = 1;
-                    break;
-                case "Bus":
-                    vehicleTypeSize = 2;
-                    break;
-                case "Boat":
-                    vehicleTypeSize = 3;
-                    break;
-                case "Moto":
-                    vehicleTypeSize = -1;
-                    break;
-                default:
-                    vehicleTypeSize = 1;
-                    break;
-            }
+            var xxx = db.VehicleTypeLists.Where(r => r.Id == vehicleTypeId);
 
-     
+            foreach (var item in xxx)
+            {
+                vehicleTypeSize = item.RequredSpace;
+            }
 
             if (vehicleTypeSize < 0)
             {

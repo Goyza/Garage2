@@ -235,9 +235,10 @@ namespace Garage2.Controllers
         // GET: ParkedVehicles/Create
         public ActionResult Create()
         {
-            ViewBag.VehicleTypeListId = new SelectList(db.VehicleTypeLists, "Id", "VehicleType");
-            ViewBag.CustomerId = new SelectList(db.Customers, "Id", "LastName");
-            return View();
+            //ViewBag.VehicleTypeListId = new SelectList(db.VehicleTypeLists, "Id", "VehicleType");
+           // ViewBag.CustomerId = new SelectList(db.Customers, "Id", "LastName");
+            var model = new ParkingVehicleEdit();           
+            return View(model);
         }
 
         // POST: ParkedVehicles/Create
@@ -277,11 +278,11 @@ namespace Garage2.Controllers
                 db.ParkedVehicles.Add(parkedVehicle);
                 db.SaveChanges();
                 //Parking     
-                var newParkingPlace = parking.GetFreeParkingPlace(parkedVehicle.VehicleType);
+                var newParkingPlace = parking.GetFreeParkingPlace(parkedVehicle.VehicleTypeListId);
                 foreach (var item in newParkingPlace)
                 {
-                    var parkingVehicle = new Parking() { VehicleType = parkedVehicle.VehicleType
-                        , ParkingPlace = item , ParkedVehicleId = parkedVehicle.Id };
+                    var parkingVehicle = new Parking() { VehicleType = parkedVehicle.VehicleType ,
+                        ParkingPlace = item , ParkedVehicleId = parkedVehicle.Id };
                     db.Parkings.Add(parkingVehicle);
                 }
 

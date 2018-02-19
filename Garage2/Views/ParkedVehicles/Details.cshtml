@@ -19,7 +19,7 @@
         </dd>
 
         <dt>
-           Brand
+            Brand
         </dt>
 
         <dd>
@@ -27,7 +27,7 @@
         </dd>
 
         <dt>
-           Vehicle type
+            Vehicle type
         </dt>
 
         <dd>
@@ -59,11 +59,19 @@
         </dd>
 
         <dt>
-          Check in time
+            Check in time
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.CheckInTime)
+        </dd>
+
+        <dt>
+            Owner
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Customer.LastName)
         </dd>
 
     </dl>

@@ -18,5 +18,7 @@ namespace Garage2.Models
             public TimeSpan ParkingTime { get { return DateTime.Now-CheckInTime; } }
             public string ParkingPlace { get { return parking.GetParkingPlaceString(Id); } }
 
+
+
     }
 }
