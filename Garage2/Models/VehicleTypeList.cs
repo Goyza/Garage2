@@ -10,6 +10,6 @@ namespace Garage2.Models
         public int Id { get; set; }
         public string VehicleType { get; set; }
         public int RequredSpace { get; set; }
-        public ICollection<ParkedVehicle> parkedVehicle { get; set; }
+        public virtual ICollection<ParkedVehicle> parkedVehicle { get; set; }
     }
 }

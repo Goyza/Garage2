@@ -19,13 +19,15 @@
     @Html.HiddenFor(model => model.Id)
     @Html.HiddenFor(model => model.RegistrationNumber)
     @Html.HiddenFor(model => model.VehicleType)
+    @Html.HiddenFor(model => model.CustomerId)
+    @Html.HiddenFor(model => model.VehicleTypeListId)
 
     <div class="form-group">
         @Html.LabelFor(model => model.RegistrationNumber, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
             @Model.RegistrationNumber
-           @* @Html.EditorFor(model => model.RegistrationNumber, new { htmlAttributes = new { @class = "form-control" } })*@
-           @* @Html.ValidationMessageFor(model => model.RegistrationNumber, "", new { @class = "text-danger" })*@
+            @* @Html.EditorFor(model => model.RegistrationNumber, new { htmlAttributes = new { @class = "form-control" } })*@
+            @* @Html.ValidationMessageFor(model => model.RegistrationNumber, "", new { @class = "text-danger" })*@
         </div>
     </div>
 
@@ -42,9 +44,9 @@
         @Html.LabelFor(model => model.VehicleType, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
             @Model.VehicleType
-           @* @Html.DropDownListFor(model => model.VehicleType, new SelectList(Enum.GetValues(typeof(VehicleTypes))), new { htmlAttributes = new { @class = "form-control" } })*@
+            @* @Html.DropDownListFor(model => model.VehicleType, new SelectList(Enum.GetValues(typeof(VehicleTypes))), new { htmlAttributes = new { @class = "form-control" } })*@
             @*@Html.EditorFor(model => model.VehicleType, new { htmlAttributes = new { @class = "form-control" } })*@
-           @* @Html.ValidationMessageFor(model => model.VehicleType, "", new { @class = "text-danger" })*@
+            @* @Html.ValidationMessageFor(model => model.VehicleType, "", new { @class = "text-danger" })*@
         </div>
     </div>
 

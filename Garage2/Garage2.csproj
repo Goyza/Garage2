@@ -155,10 +155,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201802190951591_asdfasdf.cs" />
-    <Compile Include="Migrations\201802190951591_asdfasdf.Designer.cs">
-      <DependentUpon>201802190951591_asdfasdf.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\CostPerMinute.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -248,11 +244,6 @@
   <ItemGroup>
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201802190951591_asdfasdf.resx">
-      <DependentUpon>201802190951591_asdfasdf.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

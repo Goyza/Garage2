@@ -16,9 +16,11 @@ namespace Garage2.Controllers
 
         private GarageContext db = new GarageContext();
         private Parking parking = new Parking();
+        private VehicleTypeList vehicleTypeList = new VehicleTypeList();
+       // private Customer customer = new Customer();
         //Search By Registration Number
 
-   
+
         public ActionResult SearchByRegNumber(string searchByRegNum = "", string brand = "", string vehicletype = "", string vehiclemodel = "", string color = "", string typeoffuel = "", string Sorting = "") {
             var model = db.ParkedVehicles.Select(g => g);
 
@@ -233,6 +235,8 @@ namespace Garage2.Controllers
         // GET: ParkedVehicles/Create
         public ActionResult Create()
         {
+            ViewBag.VehicleTypeListId = new SelectList(db.VehicleTypeLists, "Id", "VehicleType");
+            ViewBag.CustomerId = new SelectList(db.Customers, "Id", "LastName");
             return View();
         }
 
@@ -241,8 +245,16 @@ namespace Garage2.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,RegistrationNumber,Brand,VehicleType,Model,Color,FuelType")] ParkingVehicleEdit parkedVehicleEdit)
+        public ActionResult Create([Bind(Include = "Id,RegistrationNumber,Brand,VehicleType,Model,Color,FuelType,CustomerId,VehicleTypeListId")] ParkingVehicleEdit parkedVehicleEdit)
         {
+            var xxx = db.VehicleTypeLists.Where(r => r.Id == parkedVehicleEdit.VehicleTypeListId);
+            string yyy = "";
+
+            foreach (var item in xxx)
+            {
+                yyy = item.VehicleType;
+            }
+
             if (ModelState.IsValid)
             {
              //   parkedVehicle.CheckInTime = DateTime.Now;
@@ -251,13 +263,15 @@ namespace Garage2.Controllers
                 {
                     Brand = parkedVehicleEdit.Brand,
                     Id = parkedVehicleEdit.Id,
-                    CheckInTime = DateTime.Now
-                ,
+                    CheckInTime = DateTime.Now,
+                
                     Color = parkedVehicleEdit.Color,
                     FuelType = parkedVehicleEdit.FuelType,
                     Model = parkedVehicleEdit.Model,
                     RegistrationNumber = parkedVehicleEdit.RegistrationNumber,
-                    VehicleType = parkedVehicleEdit.VehicleType
+                    VehicleType = yyy,
+                    CustomerId= parkedVehicleEdit.CustomerId,
+                    VehicleTypeListId=parkedVehicleEdit.VehicleTypeListId
                 };
 
                 db.ParkedVehicles.Add(parkedVehicle);
@@ -266,7 +280,8 @@ namespace Garage2.Controllers
                 var newParkingPlace = parking.GetFreeParkingPlace(parkedVehicle.VehicleType);
                 foreach (var item in newParkingPlace)
                 {
-                    var parkingVehicle = new Parking() { VehicleType = parkedVehicle.VehicleType, ParkingPlace = item , ParkedVehicleId = parkedVehicle.Id };
+                    var parkingVehicle = new Parking() { VehicleType = parkedVehicle.VehicleType
+                        , ParkingPlace = item , ParkedVehicleId = parkedVehicle.Id };
                     db.Parkings.Add(parkingVehicle);
                 }
 
@@ -298,7 +313,7 @@ namespace Garage2.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,RegistrationNumber,Brand,VehicleType,Model,Color,FuelType,CheckInTime")] ParkedVehicle parkedVehicle)
+        public ActionResult Edit([Bind(Include = "Id,RegistrationNumber,Brand,VehicleType,Model,Color,FuelType,CheckInTime,CustomerId,VehicleTypeListId")] ParkedVehicle parkedVehicle)
         {
             if (ModelState.IsValid)
             {
