@@ -34,8 +34,12 @@ namespace Garage2.Models
 
         [DisplayFormat(DataFormatString = "{0:yyyy/MM/dd HH:mm}", ApplyFormatInEditMode = true)]
         public DateTime CheckInTime { get; set; }
-
         public virtual ICollection<Parking> Parking { get; set; }
+        [Required]
+        public int CustomerId { get; set; }
+        public virtual Customer Customer { get; set; }
+
+
 
         //Parking Validation
         //public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)

@@ -148,17 +148,23 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\CustomersController.cs" />
     <Compile Include="Controllers\ParkedVehiclesController.cs" />
     <Compile Include="DataAccessLayer\GarageContext.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201802131037408_Parking.cs" />
-    <Compile Include="Migrations\201802131037408_Parking.Designer.cs">
-      <DependentUpon>201802131037408_Parking.cs</DependentUpon>
+    <Compile Include="Migrations\201802190841365_newdatabase.cs" />
+    <Compile Include="Migrations\201802190841365_newdatabase.Designer.cs">
+      <DependentUpon>201802190841365_newdatabase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201802190913469_Added Customer.cs" />
+    <Compile Include="Migrations\201802190913469_Added Customer.Designer.cs">
+      <DependentUpon>201802190913469_Added Customer.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\CostPerMinute.cs" />
+    <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\KvittoViewModel.cs" />
     <Compile Include="Models\ParkedVehicle.cs" />
     <Compile Include="Models\ParkedVehicleViewModel.cs" />
@@ -219,6 +225,11 @@
     <Content Include="Views\ParkedVehicles\GaragePlacesInfo.cshtml" />
     <Content Include="Views\ParkedVehicles\Statistics.cshtml" />
     <Content Include="Views\ParkedVehicles\_ParkingStatView.cshtml" />
+    <Content Include="Views\Customers\Create.cshtml" />
+    <Content Include="Views\Customers\Delete.cshtml" />
+    <Content Include="Views\Customers\Details.cshtml" />
+    <Content Include="Views\Customers\Edit.cshtml" />
+    <Content Include="Views\Customers\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -237,8 +248,11 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201802131037408_Parking.resx">
-      <DependentUpon>201802131037408_Parking.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201802190841365_newdatabase.resx">
+      <DependentUpon>201802190841365_newdatabase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201802190913469_Added Customer.resx">
+      <DependentUpon>201802190913469_Added Customer.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -23,7 +23,8 @@
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
                         <li>@Html.ActionLink("Park a Vehicle", "Create", "ParkedVehicles")</li>
-                        <li>@Html.ActionLink("Garage Statistics", "Statistics", "ParkedVehicles")</li>                       
+                        <li>@Html.ActionLink("Garage Statistics", "Statistics", "ParkedVehicles")</li>
+                        <li>@Html.ActionLink("Customers", "Index", "Customers")</li>
                         @*<li>@Html.ActionLink("About", "About", "Home")</li>*@
 
                     </ul>
@@ -34,7 +35,7 @@
             @RenderBody()
             <hr />
             <footer>
-                @Html.Action("GaragePlacesInfo")
+            @Html.Action("GaragePlacesInfo", "ParkedVehicles")
                 <p>&copy; @DateTime.Now.Year - A FRNCPV inc Publication</p>
             </footer>
         </div>
