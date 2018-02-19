@@ -192,6 +192,13 @@ namespace Garage2.Controllers
                 );
             return View(model);
         }
+        public ActionResult DetailedIndex()
+        {
+
+            var model = db.ParkedVehicles.Select(g => g);
+             
+            return View(model);
+        }
 
         // GET: Kvitto
         public ActionResult Kvitto(ParkedVehicle parkedVehicle)

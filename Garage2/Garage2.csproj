@@ -232,6 +232,7 @@
     <Content Include="Views\VehicleTypeLists\Details.cshtml" />
     <Content Include="Views\VehicleTypeLists\Edit.cshtml" />
     <Content Include="Views\VehicleTypeLists\Index.cshtml" />
+    <Content Include="Views\ParkedVehicles\DetailedIndex.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
