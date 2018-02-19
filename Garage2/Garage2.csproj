@@ -150,17 +150,14 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\CustomersController.cs" />
     <Compile Include="Controllers\ParkedVehiclesController.cs" />
+    <Compile Include="Controllers\VehicleTypeListsController.cs" />
     <Compile Include="DataAccessLayer\GarageContext.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201802190841365_newdatabase.cs" />
-    <Compile Include="Migrations\201802190841365_newdatabase.Designer.cs">
-      <DependentUpon>201802190841365_newdatabase.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201802190913469_Added Customer.cs" />
-    <Compile Include="Migrations\201802190913469_Added Customer.Designer.cs">
-      <DependentUpon>201802190913469_Added Customer.cs</DependentUpon>
+    <Compile Include="Migrations\201802190951591_asdfasdf.cs" />
+    <Compile Include="Migrations\201802190951591_asdfasdf.Designer.cs">
+      <DependentUpon>201802190951591_asdfasdf.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\CostPerMinute.cs" />
@@ -230,6 +227,11 @@
     <Content Include="Views\Customers\Details.cshtml" />
     <Content Include="Views\Customers\Edit.cshtml" />
     <Content Include="Views\Customers\Index.cshtml" />
+    <Content Include="Views\VehicleTypeLists\Create.cshtml" />
+    <Content Include="Views\VehicleTypeLists\Delete.cshtml" />
+    <Content Include="Views\VehicleTypeLists\Details.cshtml" />
+    <Content Include="Views\VehicleTypeLists\Edit.cshtml" />
+    <Content Include="Views\VehicleTypeLists\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -248,11 +250,8 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201802190841365_newdatabase.resx">
-      <DependentUpon>201802190841365_newdatabase.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201802190913469_Added Customer.resx">
-      <DependentUpon>201802190913469_Added Customer.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201802190951591_asdfasdf.resx">
+      <DependentUpon>201802190951591_asdfasdf.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

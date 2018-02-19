@@ -39,6 +39,9 @@ namespace Garage2.Models
         public int CustomerId { get; set; }
         public virtual Customer Customer { get; set; }
 
+        public int VehicleTypeListId { get; set; }
+        public virtual VehicleTypeList VehicleTypeList { get; set; }
+
 
 
         //Parking Validation
