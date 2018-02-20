@@ -109,6 +109,17 @@ namespace Garage2.Models
         {
                 return db.Parkings.Where(r => r.ParkedVehicleId.Equals(VehicleId)).Select(r => r.Id);
         }
+
+        //Enum List places for Group
+        public IEnumerable<VehicleStatGroup> GetParkingVehicles()
+        {
+           var model= db.ParkedVehicles.GroupBy(p => p.VehicleTypeList.VehicleType)
+                            .Select(g => new VehicleStatGroup{ VehicleType = g.Key
+                            , Quantity = g.Count() });
+
+            return model;
+        }
+
         // String places for VehicleID
         public string GetParkingPlaceString(int VehicleId)
         {

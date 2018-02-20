@@ -168,8 +168,9 @@ namespace Garage2.Controllers
                 statistics.TotParkingTime += DateTime.Now - t;
             }
 
-            statistics.Revenue = (Decimal) statistics.TotParkingTime.TotalMinutes * CostPerMinute.costPerMinute;
+          //  statistics.Revenue = (Decimal) statistics.TotParkingTime.TotalMinutes * CostPerMinute.costPerMinute;
             statistics.ParkingStatString = parking.GetAllFreeParkingPlace();
+            statistics.ParkingStatGroup = parking.GetParkingVehicles();
 
             return View(statistics);
         }

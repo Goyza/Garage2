@@ -9,7 +9,7 @@
 <div>
      
     <dl class="dl-horizontal">
-        <dt>
+        @*<dt>
             @Html.DisplayNameFor(model => model.NumberOfVehicles)
         </dt>
 
@@ -54,7 +54,7 @@
 
         <dd>
             @Html.DisplayFor(model => model.NumberOfUndefined)
-        </dd>
+        </dd>*@
 
         <dt>
             @Html.DisplayNameFor(model => model.TotParkingTime)
@@ -71,15 +71,16 @@
         <dd>
             @Html.DisplayFor(model => model.Revenue)
         </dd>
-
-        @*<dt>
-            @Html.DisplayNameFor(model => model.ParkingStatString)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ParkingStatString)
-        </dd>*@
     </dl>
+    <div>
+        <h3>Parking Vehicle Information</h3>
+        @foreach (var item in Model.ParkingStatGroup)
+    {
+        @Html.Partial("_ParkingStatGroupView", item)
+    }
+
+    </div>
+
     <div>
         <h3>Parking Place Information</h3>
         @foreach (var item in Model.ParkingStatString)

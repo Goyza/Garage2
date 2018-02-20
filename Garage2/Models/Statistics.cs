@@ -16,7 +16,9 @@ namespace Garage2.Models
         public int NumberOfUndefined { get; set; }
         [DisplayFormat(DataFormatString = ("{0:%d}d {0:%h}h {0:%m}m"), ApplyFormatInEditMode = true)]
         public TimeSpan TotParkingTime { get; set; }
-        public Decimal Revenue { get; set; }
+        public Decimal Revenue { get
+            { return (Decimal) TotParkingTime.TotalMinutes * CostPerMinute.costPerMinute; } }
         public IEnumerable<ParkingStatView> ParkingStatString { get; set; }
+        public IEnumerable<VehicleStatGroup> ParkingStatGroup { get; set; }
     }
 }
