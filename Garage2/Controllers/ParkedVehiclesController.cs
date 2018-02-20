@@ -178,14 +178,30 @@ namespace Garage2.Controllers
 
 
     // GET: ParkedVehicles
-    public ActionResult Index()
+    public ActionResult Index(string searchByRegNum = "", [Bind(Prefix = "VehicleTypeList")] string VehicleType = "")
         {
+           ViewBag.VehicleTypeList = new SelectList(db.VehicleTypeLists, "VehicleType", "VehicleType");
+
 
             var model = db.ParkedVehicles.Select(g => new ParkedVehicleViewModel { Id  = g.Id, RegistrationNumber=g.RegistrationNumber
                 , VehicleType= g.VehicleTypeList.VehicleType, CheckInTime=g.CheckInTime, Customer=g.Customer.LastName +" "+ g.Customer.FirstName
                 //   , ParkingPlace = parking.GetParkingPlaceString(g.Id)
             }
                 );
+
+
+            if (searchByRegNum != "")
+            {
+                model = model.Where(r => r.RegistrationNumber.Contains(searchByRegNum));
+
+            }
+           
+            if (VehicleType != "")
+            {
+                model = model.Where(r => r.VehicleType.Contains(VehicleType));
+
+            }
+          
             return View(model);
         }
         public ActionResult DetailedIndex()
