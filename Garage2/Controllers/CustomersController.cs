@@ -16,9 +16,12 @@ namespace Garage2.Controllers
         private GarageContext db = new GarageContext();
 
         // GET: Customers
-        public ActionResult Index()
+        public ActionResult Index(string searchByLastName = null)
         {
-            return View(db.Customers.ToList());
+            var model = db.Customers.Where(r => searchByLastName == null ||
+             r.LastName.Contains(searchByLastName));
+            return View(model);
+
         }
 
         // GET: Customers/Details/5
