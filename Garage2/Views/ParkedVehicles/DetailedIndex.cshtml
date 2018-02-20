@@ -5,7 +5,19 @@
     ViewBag.Title = "DetailedIndex";
 }
 
-<h2>DetailedIndex</h2>
+<h2>Grönköping Detailed Garage</h2>
+
+<form method="get">
+    <h4>Search by registration number</h4>
+    @Html.TextBox("searchByRegNum", null, new { @placeholder = "XXX111" })
+    <input type="submit" value="Search" /><br />
+</form>
+<form method="get">
+    <h4>Search by vehicles characteristics</h4>
+    @Html.DropDownList("VehicleTypeList", null, new { htmlAttributes = new { @class = "form-control" } })
+    <input type="submit" value="Search" /><br />
+</form>
+
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -43,56 +55,57 @@
             @Html.DisplayNameFor(model => model.CheckInTime)
         </th>
         <th>
-           Places
+            Places
         </th>
 
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Customer.FirstName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Customer.LastName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.VehicleTypeList.VehicleType)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.RegistrationNumber)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Brand)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.VehicleTypeList.VehicleType)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Model)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Color)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FuelType)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CheckInTime)
-        </td>
-        <td>
-            @Parking.GetParkingPlaceStatic(item.Id)
-        </td>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Customer.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Customer.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.VehicleTypeList.VehicleType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RegistrationNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Brand)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.VehicleTypeList.VehicleType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Model)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Color)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FuelType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CheckInTime)
+            </td>
+            <td>
+                @Parking.GetParkingPlaceStatic(item.Id)
+            </td>
 
-       
 
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
-}
+
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+    }
 
 </table>
