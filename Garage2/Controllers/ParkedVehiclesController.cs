@@ -206,16 +206,16 @@ namespace Garage2.Controllers
         }
 
         // GET: Kvitto
-        public ActionResult PrintableKvitto(string RegistrationNumber)
+        public ActionResult PrintableKvitto(string RegistrationNumber, DateTime CheckInTime, DateTime CheckOutTime, TimeSpan ParkingTime, string Customer)
             
         {
             var kvittoModel = new KvittoViewModel
             {
                 RegistrationNumber = RegistrationNumber,
-                //CheckInTime = Kvitto.CheckInTime,
-                //CheckOutTime = DateTime.Now,
-                //ParkingTime = DateTime.Now - Kvitto.CheckInTime,
-                //Customer = Kvitto.Customer.ToString()
+                CheckInTime = CheckInTime,
+                CheckOutTime = CheckOutTime,
+                ParkingTime = ParkingTime,
+                Customer = Customer.ToString()
             };
             return View(kvittoModel);
 

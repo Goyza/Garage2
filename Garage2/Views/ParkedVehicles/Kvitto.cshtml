@@ -67,5 +67,7 @@
 </div>
 <p>
     @Html.ActionLink("Back to List", "Index", new { @class = "btn btn-success" })
-    @Html.ActionLink("Print", "printableKvitto", new {RegistrationNumber = Model.RegistrationNumber }, new { @class = "btn btn-success" })
+    @Html.ActionLink("Print", "printableKvitto", new {RegistrationNumber = Model.RegistrationNumber,
+    CheckinTime = Model.CheckInTime, CheckOutTime = Model.CheckOutTime, ParkingTime = Model.ParkingTime,
+    Price = Model.Price, CostPerMinute = Model.CostPerMinute, Customer = Model.Customer }, new { @class = "btn btn-success" })
 </p>
