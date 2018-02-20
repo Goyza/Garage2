@@ -197,6 +197,19 @@ namespace Garage2.Models
             return outstring;
         }
 
+        // String places for VehicleID
+        public static string GetParkingPlaceStatic(int VehicleId)
+        {
+            GarageContext dbstat = new GarageContext();
+            string place = "";
+            var places = dbstat.Parkings.Where(r => r.ParkedVehicleId.Equals(VehicleId)).Select(r => r.ParkingPlace);
+            foreach (var item in places)
+            {
+                place += " " + item.ToString();
+            }
+            return place;
+        }
+
     }
 
 }
