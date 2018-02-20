@@ -28,11 +28,11 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.VehicleType)
+            @Html.DisplayNameFor(model => model.VehicleTypeList.VehicleType)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.VehicleType)
+            @Html.DisplayFor(model => model.VehicleTypeList.VehicleType)
         </dd>
 
         <dt>
@@ -66,7 +66,13 @@
         <dd>
             @Html.DisplayFor(model => model.CheckInTime)
         </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Customer.LastName)
+        </dt>
 
+        <dd>
+            @Html.DisplayFor(model => model.Customer.LastName)
+        </dd>
     </dl>
 
     @using (Html.BeginForm()) {

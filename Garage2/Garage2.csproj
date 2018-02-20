@@ -155,11 +155,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201802191535275_Molgan.cs" />
-    <Compile Include="Migrations\201802191535275_Molgan.Designer.cs">
-      <DependentUpon>201802191535275_Molgan.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\CostPerMinute.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\KvittoViewModel.cs" />
@@ -249,11 +244,6 @@
   <ItemGroup>
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201802191535275_Molgan.resx">
-      <DependentUpon>201802191535275_Molgan.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

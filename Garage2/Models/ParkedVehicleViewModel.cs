@@ -19,7 +19,5 @@ namespace Garage2.Models
             public string ParkingPlace { get { return parking.GetParkingPlaceString(Id); } }
             public string Customer { get; set; }
            
-
-
     }
 }

@@ -195,29 +195,27 @@ namespace Garage2.Controllers
             return View(model);
         }
 
+
         // GET: Kvitto
-        public ActionResult Kvitto(ParkedVehicle parkedVehicle)
+        public ActionResult Kvitto(KvittoViewModel Kvitto)
         {
-            var kvittoModel = new KvittoViewModel
-            {
-                RegistrationNumber = parkedVehicle.RegistrationNumber,
-                CheckInTime = parkedVehicle.CheckInTime,
-                CheckOutTime = DateTime.Now,
-                ParkingTime = DateTime.Now - parkedVehicle.CheckInTime,
-            };
-            return View(kvittoModel);
+            var kvitto = Kvitto;
+           
+            return View(kvitto);
 
         }
 
         // GET: Kvitto
-        public ActionResult printableKvitto(ParkedVehicle parkedVehicle)
+        public ActionResult PrintableKvitto(string RegistrationNumber)
+            
         {
             var kvittoModel = new KvittoViewModel
             {
-                RegistrationNumber = parkedVehicle.RegistrationNumber,
-                CheckInTime = parkedVehicle.CheckInTime,
-                CheckOutTime = DateTime.Now,
-                ParkingTime = DateTime.Now - parkedVehicle.CheckInTime,
+                RegistrationNumber = RegistrationNumber,
+                //CheckInTime = Kvitto.CheckInTime,
+                //CheckOutTime = DateTime.Now,
+                //ParkingTime = DateTime.Now - Kvitto.CheckInTime,
+                //Customer = Kvitto.Customer.ToString()
             };
             return View(kvittoModel);
 
@@ -346,6 +344,16 @@ namespace Garage2.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             ParkedVehicle parkedVehicle = db.ParkedVehicles.Find(id);
+
+            var kvittoModel = new KvittoViewModel
+            {
+                RegistrationNumber = parkedVehicle.RegistrationNumber,
+                CheckInTime = parkedVehicle.CheckInTime,
+                CheckOutTime = DateTime.Now,
+                ParkingTime = DateTime.Now - parkedVehicle.CheckInTime,
+                Customer = parkedVehicle.Customer.LastName
+            };
+
             db.ParkedVehicles.Remove(parkedVehicle);
             db.SaveChanges();
             //Remove Parking     
@@ -358,11 +366,10 @@ namespace Garage2.Controllers
 
             //db.SaveChanges();
 
-
-
-
-            return RedirectToAction("Kvitto", parkedVehicle);
+            return RedirectToAction("Kvitto", kvittoModel);
         }
+
+
         //GetAllSpaces
         public ActionResult GaragePlacesInfo ()
         {

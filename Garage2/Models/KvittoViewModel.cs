@@ -17,5 +17,6 @@ namespace Garage2.Models
         public TimeSpan ParkingTime { get; set; }
         public Decimal Price => (Decimal) ParkingTime.TotalMinutes * CostPerMinute;
         public Decimal CostPerMinute { get { return costPerMinute; } }
+        public string Customer { get; set; }
     }
 }
