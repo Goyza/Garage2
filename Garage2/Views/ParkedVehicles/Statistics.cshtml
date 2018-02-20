@@ -75,8 +75,13 @@
     <div>
         <h3>Parking Vehicle Information</h3>
         @foreach (var item in Model.ParkingStatGroup)
+
+
     {
+          
+
         @Html.Partial("_ParkingStatGroupView", item)
+          
     }
 
     </div>
@@ -85,7 +90,9 @@
         <h3>Parking Place Information</h3>
         @foreach (var item in Model.ParkingStatString)
     {
-        @Html.Partial("_ParkingStatView", item)
+     
+          
+            @Html.Partial("_ParkingStatView", item)
     }
     </div>
 </div>

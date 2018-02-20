@@ -2,9 +2,23 @@
 
 @{
     ViewBag.Title = "Garage";
+    
+    
 }
 
-<h2>Garage</h2>
+
+<h1>Grönköping Garage</h1>
+
+<form method="get">
+    <h4>Search by registration number</h4>
+    @Html.TextBox("searchByRegNum", null, new { @placeholder = "XXX111" })
+    <input type="submit" value="Search" /><br />
+</form>  
+<form method="get">
+    <h4>Search by vehicles characteristics</h4>
+    @Html.DropDownList("VehicleTypeList", null, new { htmlAttributes = new { @class = "form-control" } })
+    <input type="submit" value="Search" /><br />
+</form>  
 
 <table class="table">
     <tr>
