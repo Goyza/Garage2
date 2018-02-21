@@ -14,7 +14,7 @@ namespace Garage2.Models
         public string TelephoNnumber { get; set; }       
         public virtual ICollection<ParkedVehicle> ParkedVehicles { get; set; }
 
-       
+        public string Owner { get { return LastName + " " + FirstName; } }
 
 
 

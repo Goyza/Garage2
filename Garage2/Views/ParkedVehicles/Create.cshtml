@@ -49,11 +49,21 @@
         <div class="col-md-10">
             @Html.DropDownListFor(model => model.VehicleTypeListId, Model.VehicleTypeListTest, new { htmlAttributes = new { @class = "form-control" } })
             @*@Html.DropDownList("VehicleTypeListId", null, htmlAttributes: new { @class = "form-control" })*@
-        @Html.ValidationMessageFor(model => model.VehicleTypeListId, "", new { @class = "text-danger" })
+            @Html.ValidationMessageFor(model => model.VehicleTypeListId, "", new { @class = "text-danger" })
 
         </div>
     </div>
+    @*@Html.DropDownListFor(
+        m => m.CountryId, // Specifies where to store selected country Id
+                          // It needs to be null for the default selection to work!
 
+        new SelectList(Model.Countries,
+                       "Id",
+                       "Name"),
+
+        // Text of option that prompts user to select
+        "- Please select your country -"
+    )*@
     <div class="form-group">
         @Html.LabelFor(model => model.CustomerId, "CustomerId", htmlAttributes: new { @class = "control -label col-md-2" })
         <div class="col-md-10">

@@ -58,7 +58,9 @@ namespace Garage2.Models
 
         public IEnumerable<SelectListItem> CustomerListTest
         {
-            get { return new SelectList(_customer, "Id", "LastName"); }
+            //get { return new SelectList(_customer, "Id", "LastName"); }
+            get { return new SelectList(_customer, "Id", "Owner"); }
+
         }
 
 
